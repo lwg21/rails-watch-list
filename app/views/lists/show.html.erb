@@ -1,6 +1,9 @@
-<h1>
-  <%= @list.name %>
-</h1>
+<banner>
+  <h1>
+    <%= @list.name %>
+  </h1>
+  <%= cl_image_tag @list.image.key, height: 300, width: 400, crop: :fill %>
+</banner>
 <h2>Movies</h2>
 <ul>
   <% @list.bookmarks.each do |bookmark| %>
