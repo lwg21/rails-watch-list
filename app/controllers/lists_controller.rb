@@ -16,7 +16,14 @@ class ListsController < ApplicationController
   def create
     @list = List.new(params_list)
     @list.save
+    @list.image =  unless @list.image.attached?
     redirect_to list_path(@list)
+  end
+
+  def destroy
+    @list = List.find(params[:id])
+    @list.destroy
+    redirect_to lists_path, status: :see_other
   end
 
   private

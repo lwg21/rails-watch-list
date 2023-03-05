@@ -1,6 +1,14 @@
-<h1>Create a new list</h1>
-<%= simple_form_for(@list) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit %>
-<% end %>
+<div class="wrapper">
+  <h1>Create a new list</h1>
+  <div class="navbar">
+    <%= link_to "Lists", lists_path %>
+    <%= link_to "New list", new_list_path %>
+  </div>
+</div>
+<div class="container">
+  <%= simple_form_for(@list) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :image, as: :file %>
+    <%= f.submit %>
+  <% end %>
+</div>

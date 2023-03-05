@@ -1,25 +1,44 @@
-<banner>
+<div class="wrapper">
+  <div
+    class="banner"
+    style="
+      background-image:
+      linear-gradient(rgba(0,0,0,0.3),
+      rgba(0,0,0,0.3)),
+      url('<%= @list.image.attached? ? cl_image_path(@list.image.key, width: 1000) : "https://images.unsplash.com/photo-1583513702411-9dade5d3cb12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8cHVwcHl8fHx8fHwxNjc3MjUyNDk2&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080" %>')">
   <h1>
     <%= @list.name %>
   </h1>
-  <%= cl_image_tag @list.image.key, height: 300, width: 400, crop: :fill %>
-</banner>
-<h2>Movies</h2>
-<ul>
-  <% @list.bookmarks.each do |bookmark| %>
-    <li>
-      <%= bookmark.movie.title %>
-      <%= bookmark.comment %>
-      <%= link_to "Delete",
-        bookmark_path(bookmark),
-        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-      %>
-    </li>
-  <% end %>
-</ul>
-<h2>Add a movie</h2>
-<%= simple_form_for [@list, @bookmark] do |f| %>
-  <%= f.association :movie %>
-  <%= f.input :comment %>
-  <%= f.submit %>
-<% end %>
+  </div>
+    <div class="navbar">
+    <%= link_to "Lists", lists_path %>
+    <%= link_to "New list", new_list_path %>
+  </div>
+</div>
+<div class="container">
+  <h2>Bookmarks</h2>
+  <ul>
+    <% @list.bookmarks.each do |bookmark| %>
+      <li>
+        <%= bookmark.movie.title %>
+        <%= bookmark.comment %>
+        <%= link_to "Delete",
+          bookmark_path(bookmark),
+          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+        %>
+      </li>
+    <% end %>
+  </ul>
+  <h2>Add a movie</h2>
+  <div class="container">
+    <%= simple_form_for [@list, @bookmark] do |f| %>
+      <%= f.association :movie %>
+      <%= f.input :comment %>
+      <%= f.submit %>
+    <% end %>
+    <%= link_to "Delete list",
+      list_path(@list),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+    %>
+  </div>
+</div>

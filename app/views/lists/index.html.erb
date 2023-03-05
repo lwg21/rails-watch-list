@@ -1,9 +1,25 @@
-<h1>Movie lists</h1>
-<ul>
-  <% @lists.each do |list|  %>
-    <li>
-      <%= cl_image_tag list.image.key, height: 300, width: 400, crop: :fill %>
-      <%= link_to list.name, list_path(list) %>
-    </li>
-  <% end %>
-</ul>
+<div class="wrapper">
+  <div class="banner">
+    <h1>
+      Movie lists
+    </h1>
+  </div>
+  <div class="navbar">
+    <%= link_to "Lists", lists_path %>
+    <%= link_to "New list", new_list_path %>
+  </div>
+</div>
+<div class="container">
+  <div class="lists">
+    <% @lists.each do |list|  %>
+      <div class="list">
+        <% if list.image.attached? %>
+          <%= cl_image_tag list.image.key %>
+        <% else %>
+          <%= cl_image_tag "gpkxtohd0zcjtcewhxoh" %>
+        <% end %>
+        <%= link_to list.name, list_path(list) %>
+      </div>
+    <% end %>
+  </div>
+</div>
